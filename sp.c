@@ -70,46 +70,47 @@ void showlist(struct LineNode* head){
 }
 
 void print_diff(struct LineNode* head,int n){
-        if(n>1)
-        {print_diff(head->next,n-1);
-        printf("%s",head->line);}
-    else
-        return;
+        if(n>1)
+            {print_diff(head->next,n-1);
+        printf("%s",head->line);}
+        else
+            return;
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        printf("Usage: %s <n> <filename>\n", argv[0]);
-        return 1;
-    }
+    if (argc != 3) {
+            printf("Usage: %s <n> <filename>\n", argv[0]);
+    return 1;
+    }
 
-    int n = atoi(argv[1]);
-    if (n <= 0) {
-        printf("Invalid value of n. Please provide a positive integer.\n");
-        return 1;
-    }
+    int n = atoi(argv[1]);
+    if (n <= 0) {
+            printf("Invalid value of n. Please provide a positive integer.\n");
+    return 1;
+    }
 
-    FILE* file = fopen(argv[2], "r");
-    if (!file) {
-        perror("File open error");
-        return 1;
-    }
+    FILE* file = fopen(argv[2], "r");
+    if (!file) {
+            perror("File open error");
+    return 1;
+    }
 
-    struct LineNode* head = NULL;
-    char line[MAX_LINE_LENGTH];
+    struct LineNode* head = NULL;
+    char line[MAX_LINE_LENGTH];
 
-    while (fgets(line, MAX_LINE_LENGTH, file)) {
-        addLine(&head, line);
-    }
+    while (fgets(line, MAX_LINE_LENGTH, file)) {
+            addLine(&head, line);
+    }
 
-    fclose(file);
+    fclose(file);
 
-    // showlist(head);
-    print_diff(head,n);
-    //printf("%s","\n\n");
-    // printLastLines(head, n);
+    // showlist(head);
+    print_diff(head,n);
+    //printf("%s","\n\n");
+    // printLastLines(head, n);
 
-    freeList(head);
+    freeList(head);
 
-    return 0;
-}
+    return 0;
+
+    }
